@@ -1,0 +1,102 @@
+<div class="row">
+  <div class="col-8">
+    <h1>Formulario</h1>
+    <form (ngSubmit)="onSubmit()" [formGroup]="registerForm" autocomplete="off" class="row g-3">
+
+      <div class="col-md-6">
+        <label for="inputFirstName" class="form-label">Nombre</label>
+        <input formControlName="nombre" type="text" [ngClass]="{ 'is-invalid': nombreControlIsInvalid }"
+          class="form-control" id="inputFirstName">
+        <div class="form-text">Mínimo 6 caracteres.</div>
+        <div *ngIf="nombreControl?.hasError('required') && nombreControlIsInvalid" class="invalid-feedback">
+          Este campo es requerido.
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <label for="inputLastName" class="form-label">Apellido</label>
+        <input formControlName="apellido" type="text" class="form-control" id="inputLastName"
+          [ngClass]="{ 'is-invalid': apellidoControlIsInvalid }">
+        <div *ngIf="apellidoControl?.hasError('required') && apellidoControlIsInvalid" class="invalid-feedback">
+          Este campo es requerido.
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <label for="inputEmail4" class="form-label">Email</label>
+        <input formControlName="email" type="email" [ngClass]="{ 'is-invalid': emailControlIsInvalid }"
+          class="form-control" id="inputEmail4">
+        <div *ngIf="emailControl?.hasError('required') && emailControlIsInvalid" class="invalid-feedback">
+          Este campo es invalido.
+        </div>
+        <div *ngIf="emailControl?.hasError('email') && emailControlIsInvalid" class="invalid-feedback">
+          No es un email valido.
+        </div>
+      </div>
+
+      <ng-container formGroupName="localizacion">
+
+        <div class="col-12">
+          <label for="inputAddress" class="form-label">Dirección</label>
+          <input formControlName="direccion_1" type="text" class="form-control" id="inputAddress"
+            placeholder="1234 Main St" [ngClass]="{ 'is-invalid': direccion_1ControlIsInvalid }">
+          <div *ngIf="direccion_1Control?.hasError('required') && direccion_1ControlIsInvalid" class="invalid-feedback">
+            Este campo es requerido.
+          </div>
+        </div>
+
+        <div class="col-12">
+          <label for="inputAddress2" class="form-label">Dirección 2</label>
+          <input formControlName="direccion_2" type="text" class="form-control" id="inputAddress2"
+            placeholder="Apartment, studio, or floor" [ngClass]="{ 'is-invalid': direccion_2ControlIsInvalid }">
+          <div *ngIf="direccion_2Control?.hasError('required') && direccion_2ControlIsInvalid" class="invalid-feedback">
+            Este campo es requerido.
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <label for="inputCity" class="form-label">Ciudad</label>
+          <input formControlName="ciudad" type="text" class="form-control" id="inputCity"
+            [ngClass]="{ 'is-invalid': ciudadControlIsInvalid }">
+          <div *ngIf="ciudadControl?.hasError('required') && ciudadControlIsInvalid" class="invalid-feedback">
+            Este campo es requerido.
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <label for="inputState" class="form-label">Provincia</label>
+          <select id="inputState" class="form-select" formControlName="provincia">
+            <option value="" selected>Choose...</option>
+            <option value="BS. AS.">Buenos Aires</option>
+            <option>San Juan</option>
+            <option>Mendoza</option>
+          </select>
+        </div>
+
+        <div class="col-md-2">
+          <label for="inputZip" class="form-label">Zip</label>
+          <input formControlName="zip" type="text" class="form-control" id="inputZip" [ngClass]="{ 'is-invalid': zipControlIsInvalid }">
+          <div *ngIf="zipControl?.hasError('required') && zipControlIsInvalid" class="invalid-feedback">
+            Este campo es requerido.
+          </div>
+          <div *ngIf="zipControl?.hasError('pattern') && zipControlIsInvalid" class="invalid-feedback">
+            No es un numero valido.
+          </div>
+        </div>
+
+      </ng-container>
+
+      <div class="col-12">
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" id="gridCheck">
+          <label class="form-check-label" for="gridCheck">
+            Check me out
+          </label>
+        </div>
+      </div>
+      <div class="col-12">
+        <button type="submit" class="btn btn-primary">Sign in</button>
+      </div>
+    </form>
+  </div>
+</div>
